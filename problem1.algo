@@ -1,0 +1,21 @@
+ALGORITHM Problem1
+VAR
+const : set1 := [3, 1, 7, 9];
+const : set2 := [2, 4, 1, 9, 3];
+variable : sum := 0;
+BEGIN
+for ( i = 0; i < set1.length; i++) 
+    if (set2.indexOf(set1[i]) === -1) 
+        sum += set1[i];
+for ( i = 0; i < set2.length; i++) 
+    if (set1.indexOf(set2[i]) === -1) 
+        sum += set2[i];
+write("The sum of all distinct elements is: " + sum);
+END
+
+
+// indexOf() method is used to check if an element is present in an array. 
+//If indexOf() returns -1, it means the element is not present in the array.
+
+
+

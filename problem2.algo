@@ -1,0 +1,49 @@
+PROCEDURE dot_product(v1, v2, ps)
+VAR
+v1,v2:= array_float,  ps: FLOAT
+BEGIN
+for i := 1 to length(v1) do
+        ps := ps + v1[i] * v2[i]
+    end for
+END
+PROCEDURE check_orthogonality(n, vectors)
+VAR
+n: integer, vectors: array_float
+BEGIN
+    for i := 1 to n do
+        for j := i+1 to n do
+            dot_product(vectors[i], vectors[j], ps)
+            if ps := 0 then
+                print("Vectors", i, "and", j, "are orthogonal")
+            else
+                print("Vectors", i, "and", j, "are not orthogonal")
+            end if
+        end for
+    end for
+END
+FUNCTION dot_product(v1, v2) : return_type
+VAR
+v1,v2: array_float : FLOAT
+BEGIN
+    ps := 0
+    for i := 1 to length(v1) do
+        ps := ps + v1[i] * v2[i]
+    end for
+    return ps
+    RETURN value ;
+END
+PROCEDURE check_orthogonality(n, vectors)
+VAR
+n: integer, vectors: array_float
+BEGIN
+for i := 1 to n do
+        for j := i+1 to n do
+            ps := dot_product(vectors[i], vectors[j])
+            if ps := 0 then
+                write("Vectors", i, "and", j, "are orthogonal")
+            else
+                write("Vectors", i, "and", j, "are not orthogonal")
+            end if
+        end for
+    end for
+END
