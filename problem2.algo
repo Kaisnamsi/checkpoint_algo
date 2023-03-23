@@ -1,49 +1,41 @@
-PROCEDURE dot_product(v1, v2, ps)
+PROCEDURE Dot-product(v1,v2:ARRAY_OF FLOAT,VAR ps: FLOAT)
 VAR
-v1,v2:= array_float,  ps: FLOAT
+    i: INTEGER;
 BEGIN
-for i := 1 to length(v1) do
-        ps := ps + v1[i] * v2[i]
-    end for
+    FOR i FROM 0 TO v1.length-1 STEP 1  DO
+        ps:=ps+v1[i]*v2[i]
+    END_FOR
 END
-PROCEDURE check_orthogonality(n, vectors)
+FUNCTION Dot-product(v1,v2:ARRAY_OF FLOAT) : FLOAT
 VAR
-n: integer, vectors: array_float
+    i: INTEGER
+    prod: FLOAT:=0;
 BEGIN
-    for i := 1 to n do
-        for j := i+1 to n do
-            dot_product(vectors[i], vectors[j], ps)
-            if ps := 0 then
-                print("Vectors", i, "and", j, "are orthogonal")
-            else
-                print("Vectors", i, "and", j, "are not orthogonal")
-            end if
-        end for
-    end for
+    FOR i FROM 0 TO v1.length-1 STEP 1  DO
+        prod:=prod+v1[i]*v2[i]
+    END_FOR
+    RETURN prod ;
 END
-FUNCTION dot_product(v1, v2) : return_type
+ALGORITHM Dot_product
 VAR
-v1,v2: array_float : FLOAT
+    n,i:INTEGER;
+    v1,v2: ARRAY_OF FLOAT;
+    ps:FLOAT:=0;
 BEGIN
-    ps := 0
-    for i := 1 to length(v1) do
-        ps := ps + v1[i] * v2[i]
-    end for
-    return ps
-    RETURN value ;
-END
-PROCEDURE check_orthogonality(n, vectors)
-VAR
-n: integer, vectors: array_float
-BEGIN
-for i := 1 to n do
-        for j := i+1 to n do
-            ps := dot_product(vectors[i], vectors[j])
-            if ps := 0 then
-                write("Vectors", i, "and", j, "are orthogonal")
-            else
-                write("Vectors", i, "and", j, "are not orthogonal")
-            end if
-        end for
-    end for
+    read(n);
+    FOR i FROM 0 TO n-1 STEP step  DO
+        IF (v1.length<>v2.length) THEN
+            write("les deux vecteurs ne sont pas de meme taille");
+            break;
+        END_IF
+        //calcul par procedure
+        Dot-product(v1,v2,ps);
+        //calcul par fonction
+        ps:=Dot-product(v1,v2);
+        IF (ps=0) THEN
+            write("les deux vecteurs sont orthgonaux")
+        ELSE
+            write("les deux vecteurs ne sont pas orthgonaux")
+        END_IF
+END_FOR
 END
